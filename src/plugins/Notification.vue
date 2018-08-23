@@ -30,7 +30,7 @@
 /*
 TODO: Notification message should be able to:
     5. api has short methods
-    6. animations
+    7. Fix animation (shadow)
 
     Write tests!
 */
@@ -60,6 +60,7 @@ export default {
             this.isCursorAbove = false;
         },
         onNotifyClick(e) {
+            this.removeNotif()
             if (!this.isCloseButton(e.target)) {
                 this.params.onClick()
             }
@@ -102,6 +103,7 @@ export default {
         margin-bottom: 5px
         border-radius: 5px
         border: 1px solid #f2f2f2
+        background-color: white
         box-shadow: 0 3px 5px 0 rgba(50,50,50,.1)
 
         &_logo
