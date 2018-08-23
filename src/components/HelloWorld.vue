@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="notifText">
-    <button @click="onClick">
+    <input
+      type="text"
+      v-model="notifText"
+      @keyup.enter="submit">
+    <button @click="submit">
       Emit notification
     </button>
   </div>
@@ -16,7 +19,7 @@ export default {
     }
   },
   methods: {
-    onClick() {
+    submit() {
       this.$notify.push({
         msg: this.notifText,
       })

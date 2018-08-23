@@ -33,9 +33,9 @@ function addNewNotif(options) {
             el: document.createElement('div'),
             data: {
                 ...options,
-                ...{ id: count++ }
+                ...{ id: count++ },
             },
-        })
+        });
 
         notifContainer.appendChild(instance.$el)
     }
@@ -52,7 +52,15 @@ const VueNotify = {
 
         Vue.prototype.$notify = {
             push(options) {
-                addNewNotif(options)
+                /*
+                    Method expects the following options:
+                    {
+                        msg: <str>,
+                        duration: <numb>,
+                    }
+                */
+
+                addNewNotif(options);
             }
         }
     }

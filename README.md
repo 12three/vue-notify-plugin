@@ -1,4 +1,4 @@
-# my-notifs
+# my-notify
 
 ## Project setup
 ```
@@ -10,13 +10,8 @@ yarn install
 yarn run serve
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
 ### Lints and fixes files
 ```
 yarn run lint
 ```
-# vue-notif
+# vue-notify
