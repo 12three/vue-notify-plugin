@@ -22,7 +22,7 @@ export default {
     submit() {
       this.$notify.push({
         msg: this.notifText,
-        shouldBeClosedByUser: true,
+        shouldBeClosedByUser: false,
         onClose() {
           console.log('close');
         },

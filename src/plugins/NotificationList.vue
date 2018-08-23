@@ -1,10 +1,10 @@
 <template>
     <div>
         <notification
-            v-for='notifData in notifStack'
+            v-for='notifData in notifsToShow'
             :key="notifData.id"
             :params='notifData'
-            @remove="onRemoveTime"/>
+            @remove="onRemove"/>
     </div>
 </template>
 
@@ -18,11 +18,17 @@ export default {
             notifStack: []
         }
     },
+    computed: {
+        notifsToShow() {
+            return this.notifStack.slice(0, this.maxNotifsCount)
+        }
+    },
     methods: {
-        onRemoveTime(notifId) {
+        onRemove(notifId) {
             const listPosition = this.notifStack.reduce((acc, item, i) => {
                 return item.id === notifId ? i : acc;
             }, false)
+
             if ( listPosition !== false) {
                 this.notifStack.splice(listPosition, 1)
             }

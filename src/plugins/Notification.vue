@@ -16,7 +16,6 @@
 
 /*
 TODO: Notification message should be able to:
-    3. max count + queue
     5. api has short methods
     6. animations
     7. style
