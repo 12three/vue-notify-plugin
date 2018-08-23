@@ -22,6 +22,13 @@ export default {
     submit() {
       this.$notify.push({
         msg: this.notifText,
+        shouldBeClosedByUser: true,
+        onClose() {
+          console.log('close');
+        },
+        onClick() {
+          console.log('click');
+        },
       })
       this.notifText = '';
     }

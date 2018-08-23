@@ -2,18 +2,19 @@
     <div
         class="item"
         @mouseover="onMouseOver"
-        @mouseleave="onMouseOut">
-        {{id}}: {{ msg }}<button @click="onRemove">x</button>
+        @mouseleave="onMouseOut"
+        @click="onNotifyClick">
+        {{ id }}: {{ msg }}
+        <button
+            class="close-button"
+            @click="onRemove">x</button>
     </div>
 </template>
-
 
 <script>
 /*
 TODO: Notification message should be able to:
-    2. has link
-    3. wait for close
-    4. timeout
+    3. max count + queue
     5. api has short methods
     6. animations
     7. style
@@ -27,6 +28,8 @@ export default {
         const defaultOptions = {
             duration: 3000,
             shouldBeClosedByUser: false,
+            onClose: new Function(),
+            onClick: new Function(),
         };
 
         return {
@@ -35,11 +38,15 @@ export default {
         };
     },
     methods: {
+        isCloseButton(elem) {
+            return elem && elem.classList.contains('close-button');
+        },
         destroy() {
             this.$destroy(true);
             this.$el.parentNode.removeChild(this.$el);
         },
         onRemove() {
+            this.onClose();
             this.destroy();
         },
         onMouseOver(){
@@ -47,7 +54,12 @@ export default {
         },
         onMouseOut() {
             this.isCursorAbove = false;
-        }
+        },
+        onNotifyClick(e) {
+            if (!this.isCloseButton(e.target)) {
+                this.onClick()
+            }
+        },
     },
     mounted() {
         if (!this.shouldBeClosedByUser) {

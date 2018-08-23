@@ -52,11 +52,14 @@ const VueNotify = {
 
         Vue.prototype.$notify = {
             push(options) {
-                /*
+                              /*
                     Method expects the following options:
                     {
                         msg: <str>,
                         duration: <numb>,
+                        shouldBeClosedByUser: <bool>,
+                        onClick: <func>,
+                        onClose: <func>,
                     }
                 */
 
