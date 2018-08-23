@@ -4,14 +4,16 @@
         @mouseover="onMouseOver"
         @mouseleave="onMouseOut"
         @click="onNotifyClick">
-        {{ id }}: {{ msg }}
+        {{ params.id }}: {{ params.msg }}
         <button
             class="close-button"
             @click="onRemove">x</button>
     </div>
 </template>
 
+
 <script>
+
 /*
 TODO: Notification message should be able to:
     3. max count + queue
@@ -25,15 +27,7 @@ TODO: Notification message should be able to:
 export default {
     name: 'Notification',
     data() {
-        const defaultOptions = {
-            duration: 3000,
-            shouldBeClosedByUser: false,
-            onClose: new Function(),
-            onClick: new Function(),
-        };
-
         return {
-            ...defaultOptions,
             isCursorAbove: false,
         };
     },
@@ -41,13 +35,12 @@ export default {
         isCloseButton(elem) {
             return elem && elem.classList.contains('close-button');
         },
-        destroy() {
-            this.$destroy(true);
-            this.$el.parentNode.removeChild(this.$el);
+        removeNotif() {
+            this.$emit('remove', this.params.id)
         },
         onRemove() {
-            this.onClose();
-            this.destroy();
+            this.params.onClose();
+            this.removeNotif();
         },
         onMouseOver(){
             this.isCursorAbove = true;
@@ -57,25 +50,31 @@ export default {
         },
         onNotifyClick(e) {
             if (!this.isCloseButton(e.target)) {
-                this.onClick()
+                this.params.onClick()
             }
         },
     },
     mounted() {
-        if (!this.shouldBeClosedByUser) {
+        if (!this.params.shouldBeClosedByUser) {
             setTimeout(() => {
                 if (this.isCursorAbove) {
                     const timerId = setInterval(() => {
                         if (!this.isCursorAbove) {
                             clearInterval(timerId);
-                            setTimeout(this.destroy, 300);
+                            setTimeout(this.removeNotif, 300);
                         }
                     }, 1000)
                 } else {
-                    this.destroy();
+                    this.removeNotif();
                 }
-            }, this.duration)
+            }, this.params.duration)
         }
+    },
+    props: {
+        params: {
+            type: Object,
+            required: true,
+        },
     }
 };
 </script>

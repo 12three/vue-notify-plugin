@@ -1,15 +1,22 @@
-import NotificationTemplate from './Notification.vue';
 import Vue from 'vue';
-const Notification = Vue.extend(NotificationTemplate);
+import NotificationListTemplate from './NotificationList.vue';
 
+const NotificationList = Vue.extend(NotificationListTemplate);
 const messages = {
     alreadyInstalled: `VueNotify: plugin already installed`,
     containerAlreadyExists: `VueNotify: container already exists`,
 };
-const types = {};
 const maxNotifsCount = 3;
-let count = 1;
+const types = {};
+const defaultNotifParams = {
+    duration: 3000,
+    shouldBeClosedByUser: false,
+    onClose: new Function(),
+    onClick: new Function(),
+};
 let notifContainer = null;
+let listInstance = null;
+let idCounter = 1;
 
 /*
 TODO:
@@ -18,9 +25,17 @@ TODO:
 
 function createContainer() {
     if (!notifContainer) {
+        listInstance = new NotificationList({
+            el: document.createElement('div'),
+            data: {
+                maxNotifsCount,
+            },
+        })
+
         notifContainer = document.createElement('div')
         notifContainer.className = 'js-notify-container b-notify'
         document.body.appendChild(notifContainer);
+        notifContainer.appendChild(listInstance.$el);
         notifContainer.style.zIndex = 100;
     } else {
         console.error(messages.containerAlreadyExists);
@@ -28,16 +43,12 @@ function createContainer() {
 }
 
 function addNewNotif(options) {
-    if (notifContainer) {
-        const instance = new Notification({
-            el: document.createElement('div'),
-            data: {
-                ...options,
-                ...{ id: count++ },
-            },
+    if (notifContainer && listInstance) {
+        listInstance.notifStack.push({
+            ...defaultNotifParams,
+            ...options,
+            ...{ id: idCounter++ },
         });
-
-        notifContainer.appendChild(instance.$el)
     }
 }
 
@@ -52,7 +63,7 @@ const VueNotify = {
 
         Vue.prototype.$notify = {
             push(options) {
-                              /*
+                /*
                     Method expects the following options:
                     {
                         msg: <str>,
