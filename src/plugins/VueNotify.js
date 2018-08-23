@@ -14,7 +14,6 @@ const defaultNotifParams = {
     onClose: new Function(),
     onClick: new Function(),
 };
-let notifContainer = null;
 let listInstance = null;
 let idCounter = 1;
 
@@ -24,26 +23,22 @@ TODO:
 */
 
 function createContainer() {
-    if (!notifContainer) {
+    if (!listInstance) {
         listInstance = new NotificationList({
             el: document.createElement('div'),
             data: {
                 maxNotifsCount,
             },
-        })
+        });
 
-        notifContainer = document.createElement('div')
-        notifContainer.className = 'js-notify-container b-notify'
-        document.body.appendChild(notifContainer);
-        notifContainer.appendChild(listInstance.$el);
-        notifContainer.style.zIndex = 100;
+        document.body.appendChild(listInstance.$el);
     } else {
         console.error(messages.containerAlreadyExists);
     }
 }
 
 function addNewNotif(options) {
-    if (notifContainer && listInstance) {
+    if (listInstance) {
         listInstance.notifStack.push({
             ...defaultNotifParams,
             ...options,
