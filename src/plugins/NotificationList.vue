@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="notification-list">
         <notification
             v-for='notifData in notifsToShow'
             :key="notifData.id"
@@ -39,3 +39,9 @@ export default {
     }
 }
 </script>
+
+<style lang="sass" scoped>
+    .notification-list
+        width: 300px
+</style>
+

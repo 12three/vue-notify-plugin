@@ -3,7 +3,6 @@ import App from './App.vue'
 import VueNotify from './plugins/VueNotify.js'
 
 Vue.use(VueNotify);
-Vue.use(VueNotify);
 Vue.config.productionTip = false
 
 new Vue({

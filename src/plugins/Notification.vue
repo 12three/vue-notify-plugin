@@ -1,11 +1,24 @@
 <template>
     <div
-        class="item"
+        class="notification"
         @mouseover="onMouseOver"
         @mouseleave="onMouseOut"
         @click="onNotifyClick">
-        {{ params.id }}: {{ params.msg }}
+        <div class="notification_logo"></div>
+        <div class="notification_content">
+            <div class="notification_header">
+                <div class="notification_header-title">{{ params.msg }}</div>
+                <div class="notification_header-date">{{ params.date }}</div>
+            </div>
+            <div
+                class="notification_description"
+                v-if="params.description">
+                {{ params.description }}
+            </div>
+        </div>
+
         <button
+            v-if="false"
             class="close-button"
             @click="onRemove">x</button>
     </div>
@@ -18,7 +31,6 @@
 TODO: Notification message should be able to:
     5. api has short methods
     6. animations
-    7. style
 
     Write tests!
 */
@@ -79,8 +91,44 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    .item
-        padding: 10px 15px
-        border: 1px solid black
+    .notification
+        display: flex
+        font-size: 14px
+        font-family: Helvetica,Arial,sans-serif
+        color: #464b4f
+        width: 100%
+        min-height: 50px
+        padding: 10px
         margin-bottom: 5px
+        border-radius: 5px
+        border: 1px solid #f2f2f2
+        box-shadow: 0 3px 5px 0 rgba(50,50,50,.1)
+
+        &_logo
+            flex: 0 0 50px
+            width: 50px
+            height: 50px
+            margin-right: 10px
+            border-radius: 25px
+            background-color: #f2f2f2
+
+        &_content
+            display: flex
+            flex-direction: column
+            justify-content: center
+            flex: 1
+
+        &_header
+            display: flex
+
+            &-title
+                flex: 1
+                text-transform: capitalize
+                font-weight: bold
+
+            &-date
+                color: grey
+
+        &_description
+            margin-top: 5px
 </style>

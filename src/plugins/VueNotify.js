@@ -17,11 +17,6 @@ const defaultNotifParams = {
 let listInstance = null;
 let idCounter = 1;
 
-/*
-TODO:
-    Write tests!
-*/
-
 function createContainer() {
     if (!listInstance) {
         listInstance = new NotificationList({
@@ -62,7 +57,9 @@ const VueNotify = {
                     Method expects the following options:
                     {
                         msg: <str>,
-                        duration: <numb>,
+                        description: <str>,
+                        date: <str>,
+                        duration: <number>,
                         shouldBeClosedByUser: <bool>,
                         onClick: <func>,
                         onClose: <func>,

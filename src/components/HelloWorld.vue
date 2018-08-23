@@ -22,7 +22,9 @@ export default {
     submit() {
       this.$notify.push({
         msg: this.notifText,
-        shouldBeClosedByUser: false,
+        date: 'June 25',
+        description: 'Гарри Робертс поделился приёмами и инструментами, помогающими ему изучить незнакомую кодовую базу с легаси ',
+        shouldBeClosedByUser: true,
         onClose() {
           console.log('close');
         },
