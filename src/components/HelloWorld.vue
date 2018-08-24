@@ -24,7 +24,7 @@ export default {
         msg: this.notifText,
         date: 'June 25',
         description: 'Гарри Робертс поделился приёмами и инструментами, помогающими ему изучить незнакомую кодовую базу с легаси ',
-        shouldBeClosedByUser: true,
+        shouldBeClosedByUser: false,
         onClose() {
           console.log('close');
         },
@@ -40,21 +40,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

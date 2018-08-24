@@ -24,7 +24,7 @@ export default {
     },
     computed: {
         notifsToShow() {
-            return this.notifStack.slice(0, this.maxNotifsCount)
+            return this.notifStack.slice(0, this.maxNotifsCount).reverse()
         }
     },
     methods: {
@@ -47,37 +47,30 @@ export default {
 <style lang="sass" scoped>
     .notification-list
         position: absolute
+        top: 20px
+        right: 20px
         width: 300px
 
     .list-item
         position: relative
-        z-index: 2
-        transition: all 1s
-        margin-right: 10px
-
-    .list-leave-to
-        z-index: 0
-        opacity: 0
-        transition: all 0.6s
-        box-shadow: 0 3px 5px 0 rgba(50,50,50,0)
-        transform: translateY(25px)
+        opacity: 1
 
     .list-enter
-        z-index: 0
+        opacity: 0
+        transform: translateY(-100%)
+
+    .list-enter-active
+        transition: all 1s
+
+    .list-leave-to
         opacity: 0
         transform: translateY(50px)
 
-    .list-move
-        opacity: 1
-        z-index: 2
-
     .list-leave-active
         position: absolute
-        z-index: 1
+        transition: all .5s
 
-    .flist-move
-        z-index: 2
-        opacity: 0
-
+    .list-move
+        transition: all 1s
 </style>
 

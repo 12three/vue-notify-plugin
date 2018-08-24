@@ -29,8 +29,9 @@
 
 /*
 TODO: Notification message should be able to:
-    5. api has short methods
-    7. Fix animation (shadow)
+    # api has short methods
+    # logo
+    # fix linters
 
     Write tests!
 */
@@ -94,6 +95,7 @@ export default {
 <style lang="sass" scoped>
     .notification
         display: flex
+        box-sizing: border-box
         font-size: 14px
         font-family: Helvetica,Arial,sans-serif
         color: #464b4f

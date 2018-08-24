@@ -9,7 +9,7 @@ const messages = {
 const maxNotifsCount = 3;
 const types = {};
 const defaultNotifParams = {
-    duration: 3000,
+    duration: 5000,
     shouldBeClosedByUser: false,
     onClose: new Function(),
     onClick: new Function(),
@@ -33,22 +33,27 @@ function createContainer() {
 }
 
 function addNewNotif(options) {
-    if (listInstance) {
-        listInstance.notifStack.push({
-            ...defaultNotifParams,
-            ...options,
-            ...{ id: idCounter++ },
-        });
-    }
+    return new Promise((fulfilled, rejected) => {
+        if (listInstance) {
+            listInstance.notifStack.push({
+                ...defaultNotifParams,
+                ...options,
+                ...{ id: idCounter++ },
+            });
+            fulfilled();
+        } else {
+            rejected();
+        }
+    })
 }
 
 const VueNotify = {
     types: types,
-    installed: false,
     install(Vue, pluginOption) {
-        if (this.installed) {
-            return console.error(messages.alreadyInstalled);
-        }
+        const notifQueue = [];
+        const delayBetweenPushing = 800;
+        let shouldWaitToPush = false;
+
         createContainer();
 
         Vue.prototype.$notify = {
@@ -66,7 +71,21 @@ const VueNotify = {
                     }
                 */
 
-                addNewNotif(options);
+                notifQueue.push(options);
+                if (!shouldWaitToPush) {
+                    shouldWaitToPush = true;
+
+                    addNewNotif(notifQueue.shift()).then(() => {
+                        const timerId = setInterval(() => {
+                            if (notifQueue.length) {
+                                addNewNotif(notifQueue.shift());
+                            } else {
+                                clearInterval(timerId);
+                                shouldWaitToPush = false;
+                            }
+                        }, delayBetweenPushing);
+                    })
+                }
             }
         }
     }
