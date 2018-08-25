@@ -2,10 +2,6 @@ import Vue from 'vue';
 import NotificationListTemplate from './NotificationList.vue';
 
 const NotificationList = Vue.extend(NotificationListTemplate);
-const messages = {
-    alreadyInstalled: `VueNotify: plugin already installed`,
-    containerAlreadyExists: `VueNotify: container already exists`,
-};
 const maxNotifsCount = 3;
 const types = {};
 const defaultNotifParams = {
@@ -27,8 +23,6 @@ function createContainer() {
         });
 
         document.body.appendChild(listInstance.$el);
-    } else {
-        console.error(messages.containerAlreadyExists);
     }
 }
 
@@ -49,7 +43,7 @@ function addNewNotif(options) {
 
 const VueNotify = {
     types: types,
-    install(Vue, pluginOption) {
+    install(Vue) {
         const notifQueue = [];
         const delayBetweenPushing = 800;
         let shouldWaitToPush = false;

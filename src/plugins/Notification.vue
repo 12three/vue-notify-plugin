@@ -32,12 +32,10 @@
 <script>
 
 /*
-TODO: Notification message should be able to:
-    # api has short methods
-    # fix linters
+TODO:
+    # api should have short methods
     # right image
-
-    Write tests!
+    # write tests
 */
 
 export default {
