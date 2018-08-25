@@ -4,7 +4,11 @@
         @mouseover="onMouseOver"
         @mouseleave="onMouseOut"
         @click="onNotifyClick">
-        <div class="notification_logo"></div>
+        <div
+            v-if="params.icon"
+            class="notification_logo"
+            :style="{backgroundImage: `url(${ baseUrl + params.icon })`}"
+            ></div>
         <div class="notification_content">
             <div class="notification_header">
                 <div class="notification_header-title">{{ params.msg }}</div>
@@ -30,8 +34,8 @@
 /*
 TODO: Notification message should be able to:
     # api has short methods
-    # logo
     # fix linters
+    # right image
 
     Write tests!
 */
@@ -41,6 +45,7 @@ export default {
     data() {
         return {
             isCursorAbove: false,
+            baseUrl: process.env.BASE_URL
         };
     },
     methods: {
@@ -61,7 +66,6 @@ export default {
             this.isCursorAbove = false;
         },
         onNotifyClick(e) {
-            this.removeNotif()
             if (!this.isCloseButton(e.target)) {
                 this.params.onClick()
             }
@@ -115,6 +119,7 @@ export default {
             margin-right: 10px
             border-radius: 25px
             background-color: #f2f2f2
+            background-size: cover
 
         &_content
             display: flex

@@ -64,6 +64,7 @@ const VueNotify = {
                         msg: <str>,
                         description: <str>,
                         date: <str>,
+                        icon: <str>,
                         duration: <number>,
                         shouldBeClosedByUser: <bool>,
                         onClick: <func>,
