@@ -66,7 +66,7 @@ export default {
     },
     computed: {
         showExpiration() {
-            return this.params.showExpiration && !this.params.closedByUser
+            return this.params.showExpiration && ! this.params.closedByUser
         }
     },
     methods: {
@@ -91,8 +91,11 @@ export default {
             if (this.timer) this.timer.resume();
         },
         onNotifyClick(e) {
+            const { onClick, closeOnClick } = this.params;
+
             if (!this.isCloseButton(e.target)) {
-                this.params.onClick()
+                onClick()
+                if (closeOnClick) this.removeNotif()
             }
         },
     },

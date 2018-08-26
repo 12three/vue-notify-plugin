@@ -8,6 +8,7 @@ const defaultNotifParams = {
     duration: 5000,
     showExpiration: true,
     closedByUser: false,
+    closeOnClick: false,
     onClose: new Function(),
     onClick: new Function(),
 };
@@ -63,6 +64,7 @@ const VueNotify = {
                         duration: <number>,
                         showExpiration: <bool>,
                         closedByUser: <bool>,
+                        closeOnClick: <bool>,
                         onClick: <func>,
                         onClose: <func>,
                     }
