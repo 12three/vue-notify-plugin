@@ -25,7 +25,8 @@ export default {
         date: 'June 25',
         duration: 3000,
         description: 'Гарри Робертс поделился приёмами и инструментами, помогающими ему изучить незнакомую кодовую базу с легаси ',
-        shouldBeClosedByUser: true,
+        closedByUser: false,
+        showExpiration: false,
         icon: '/user.png',
         onClose() {
           console.log('close');

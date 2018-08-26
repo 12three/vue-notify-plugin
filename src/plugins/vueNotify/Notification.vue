@@ -66,7 +66,7 @@ export default {
     },
     computed: {
         showExpiration() {
-            return this.params.showExpiration && !this.params.shouldBeClosedByUser
+            return this.params.showExpiration && !this.params.closedByUser
         }
     },
     methods: {
@@ -97,7 +97,7 @@ export default {
         },
     },
     mounted() {
-        if (!this.params.shouldBeClosedByUser) {
+        if (!this.params.closedByUser) {
             this.timer = new Timer(() => {
                 this.removeNotif();
             }, this.params.duration)
