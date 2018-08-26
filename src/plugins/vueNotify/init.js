@@ -6,6 +6,7 @@ const maxNotifsCount = 3;
 const types = {};
 const defaultNotifParams = {
     duration: 5000,
+    showExpiration: true,
     shouldBeClosedByUser: false,
     onClose: new Function(),
     onClick: new Function(),
@@ -60,6 +61,7 @@ const VueNotify = {
                         date: <str>,
                         icon: <str>,
                         duration: <number>,
+                        showExpiration: <bool>,
                         shouldBeClosedByUser: <bool>,
                         onClick: <func>,
                         onClose: <func>,
@@ -70,16 +72,27 @@ const VueNotify = {
                 if (!shouldWaitToPush) {
                     shouldWaitToPush = true;
 
-                    addNewNotif(notifQueue.shift()).then(() => {
-                        const timerId = setInterval(() => {
-                            if (notifQueue.length) {
-                                addNewNotif(notifQueue.shift());
-                            } else {
-                                clearInterval(timerId);
-                                shouldWaitToPush = false;
-                            }
-                        }, delayBetweenPushing);
-                    })
+                    addNewNotif(notifQueue.shift()).then(
+                        () => {
+                            const timerId = setInterval(
+                                () => {
+                                    if (
+                                        notifQueue.length
+                                    ) {
+                                        addNewNotif(
+                                            notifQueue.shift(),
+                                        );
+                                    } else {
+                                        clearInterval(
+                                            timerId,
+                                        );
+                                        shouldWaitToPush = false;
+                                    }
+                                },
+                                delayBetweenPushing,
+                            );
+                        },
+                    );
                 }
             }
         }
