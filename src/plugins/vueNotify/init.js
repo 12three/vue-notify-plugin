@@ -46,7 +46,7 @@ const VueNotify = {
     types: types,
     install(Vue) {
         const notifQueue = [];
-        const delayBetweenPushing = 800;
+        const delayBetweenPushing = 1000;
         let shouldWaitToPush = false;
 
         createContainer();
