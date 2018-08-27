@@ -2,7 +2,8 @@
     <transition-group
         name="list"
         tag="div"
-        class="notification-list">
+        class="notification-list"
+        :class="wrapperClass">
         <notification
             v-for='notifData in notifsToShow'
             class="list-item"
@@ -25,7 +26,19 @@ export default {
     computed: {
         notifsToShow() {
             return this.notifStack.slice(0, this.maxNotifsCount).reverse()
-        }
+        },
+        wrapperClass() {
+            switch (this.options.position) {
+                case 'top-right':
+                    return { 'notification-list--top-right': true }
+                case 'top-left':
+                    return { 'notification-list--top-left': true }
+                case 'bottom-right':
+                    return { 'notification-list--bottom-right': true }
+                case 'bottom-left':
+                    return { 'notification-list--bottom-left': true }
+            }
+        },
     },
     methods: {
         onRemove(notifId) {
@@ -47,9 +60,31 @@ export default {
 <style lang="sass" scoped>
     .notification-list
         position: absolute
-        top: 20px
-        right: 20px
         width: 300px
+
+        &--top-right
+            margin-top: 10px
+            margin-right: 10px
+            top: 0
+            right: 0
+
+        &--top-left
+            margin-top: 10px
+            margin-left: 10px
+            top: 0
+            left: 0
+
+        &--bottom-right
+            margin-bottom: 10px
+            margin-right: 10px
+            bottom: 0
+            right: 0
+
+        &--bottom-left
+            margin-bottom: 10px
+            margin-left: 10px
+            bottom: 0
+            left: 0
 
     .list-item
         position: relative

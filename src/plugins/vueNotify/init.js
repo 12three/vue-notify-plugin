@@ -15,12 +15,13 @@ const defaultNotifParams = {
 let listInstance = null;
 let idCounter = 1;
 
-function createContainer() {
+function createContainer(options) {
     if (!listInstance) {
         listInstance = new NotificationList({
             el: document.createElement('div'),
             data: {
                 maxNotifsCount,
+                options
             },
         });
 
@@ -45,12 +46,23 @@ function addNewNotif(options) {
 
 const VueNotify = {
     types: types,
-    install(Vue) {
+    install(Vue, instanceOptions = {}) {
+        /*
+            Main options:
+            {
+                position: 'top-right' || 'top-left' || 'bottom-right' || 'bottom-left',
+            }
+        */
+
         const notifQueue = [];
         const delayBetweenPushing = 1000;
+        const options = {
+            ...{ position: 'top-right' },
+            ...instanceOptions
+        };
         let shouldWaitToPush = false;
 
-        createContainer();
+        createContainer(options);
 
         Vue.prototype.$notify = {
             push(options) {

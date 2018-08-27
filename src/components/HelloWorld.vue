@@ -15,7 +15,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      notifText: ''
+      notifText: '',
     }
   },
   methods: {
