@@ -3,18 +3,18 @@ Vue-notify is vue plugin for non-blocking notifications.
 
 ## Installation
 ```
-npm install vue-nonify-plugin
+npm install vue-notify-plugin
 ```
 or
 ```
-yarn add vue-nonify-plugin
+yarn add vue-notify-plugin
 ```
 
 ## Configuration
 ```js
 import Vue from 'vue';
-import VueFlashMessage from 'vue-flash-message';
-Vue.use(VueFlashMessage, {
+import VueNotifyPlugin from 'vue-notify-plugin';
+Vue.use(VueNotifyPlugin, {
     position: 'top-left'
 });
 ```
@@ -36,15 +36,15 @@ Each notification expects message as first required argument.
 All props are optional.
 |Name	|Type	|Default	|Desciption|
 | ------ | ------ | ------ | ------ |
-|duration|Number|5000|The amount of milliseconds that the animation should take
-|showExpiration|Boolean|true|Dispaly expiration progress bar
-|closeByUser|Boolean|false|Make user to close notification by himself
-|closeOnClick|Boolean|false|Close notification on click
-|description|String|-|More detail notification description
-|date|String|-|Date
-|icon|String|-|Url of icon
-|onClick|Function|-|Cotification click handler, except click on close button
-|onClose|Function|-|Close button click handler
+|duration|Number|5000|The amount of milliseconds that the animation should take|
+|showExpiration|Boolean|true|Dispaly expiration progress bar|
+|closeByUser|Boolean|false|Make user to close notification by himself|
+|closeOnClick|Boolean|false|Close notification on click|
+|description|String|-|More detail notification description|
+|date|String|-|Date|
+|icon|String|-|Url of icon|
+|onClick|Function|-|Cotification click handler, except click on close button|
+|onClose|Function|-|Close button click handler|
 
 ## Development
 ### Project setup
@@ -52,7 +52,7 @@ All props are optional.
 yarn install
 ```
 
-#### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 ```
 yarn run serve
 ```
