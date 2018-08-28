@@ -49,7 +49,8 @@ const VueNotify = {
             Main options:
             {
                 position: 'top-right' || 'top-left' || 'bottom-right' || 'bottom-left',
-                maxNotifsCount: 3,
+                maxNotifsCount: <numb>,
+                customTemplate: <obj>,
             }
         */
 
@@ -77,6 +78,7 @@ const VueNotify = {
                         date: <str>,
                         icon: <str>,
                         duration: <number>,
+                        customTemplateOptions: <obj>,
                         showExpiration: <bool>,
                         closeByUser: <bool>,
                         closeOnClick: <bool>,

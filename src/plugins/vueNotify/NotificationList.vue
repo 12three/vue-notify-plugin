@@ -9,6 +9,7 @@
             class="list-item"
             :key="notifData.id"
             :params='notifData'
+            :customTemplate="options.customTemplate"
             @remove="onRemove"/>
     </transition-group>
 </template>
@@ -52,7 +53,7 @@ export default {
         },
     },
     components: {
-        Notification
+        Notification,
     }
 }
 </script>

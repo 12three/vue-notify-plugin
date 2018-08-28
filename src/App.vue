@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <CreateNotificationForm/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CreateNotificationForm from './components/CreateNotificationForm.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    CreateNotificationForm
   }
 }
 </script>

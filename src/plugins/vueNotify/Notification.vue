@@ -9,31 +9,17 @@
             class="notification_expiration">
             <div
                 class="notification_expiration-strip"
-                :style="{animationDuration: `${params.duration}ms`}"
+                :style="{ animationDuration: `${params.duration}ms` }"
             ></div>
         </div>
         <div class="notification_wrapper">
-            <div
-                v-if="params.icon"
-                class="notification_logo"
-                :style="{backgroundImage: `url(${ params.icon })`}"
-                ></div>
-            <div class="notification_content">
-                <div class="notification_header">
-                    <div class="notification_header-title">{{ params.msg }}</div>
-                    <div class="notification_header-date">{{ params.date }}</div>
-                </div>
-                <div
-                    class="notification_description"
-                    v-if="params.description">
-                    {{ params.description }}
-                </div>
-            </div>
-
-            <button
-                v-if="false"
-                class="close-button"
-                @click="onRemove">x</button>
+            <component :is="customTemplate || 'DefaultTemplate'"
+                :icon="params.icon"
+                :date="params.date"
+                :message="params.msg"
+                :description="params.description"
+                :customTemplateOptions="params.customTemplateOptions"
+                />
         </div>
     </div>
 </template>
@@ -41,14 +27,16 @@
 
 <script>
 import Timer from './Timer.js';
+import DefaultTemplate from './DefaultTemplate.vue'
 
 /*
 TODO:
     ? what can I do else
 
-    # description
     # demo
+    # remove linters errors
     # publish as npm package (vue-notify-plugin)
+    # min height
 
     # write tests
 */
@@ -109,9 +97,14 @@ export default {
             type: Object,
             required: true,
         },
+        customTemplate: Object,
+    },
+    components: {
+        DefaultTemplate,
     }
 };
 </script>
+
 
 <style lang="sass" scoped>
     $timeout-strip-color: #5699d2
@@ -138,10 +131,6 @@ export default {
         box-shadow: 0 3px 5px 0 rgba(50,50,50,.1)
         overflow: hidden
 
-        &_wrapper
-            display: flex
-            padding: 10px
-
         &_expiration
             position: relative
             width: 100%
@@ -160,33 +149,4 @@ export default {
 
         &:hover &_expiration-strip
             animation-play-state: paused
-
-        &_logo
-            flex: 0 0 50px
-            width: 50px
-            height: 50px
-            margin-right: 10px
-            border-radius: 25px
-            background-color: #f2f2f2
-            background-size: cover
-
-        &_content
-            display: flex
-            flex-direction: column
-            justify-content: center
-            flex: 1
-
-        &_header
-            display: flex
-
-            &-title
-                flex: 1
-                text-transform: capitalize
-                font-weight: bold
-
-            &-date
-                color: grey
-
-        &_description
-            margin-top: 5px
 </style>
