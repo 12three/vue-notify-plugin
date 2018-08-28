@@ -78,7 +78,7 @@ const VueNotify = {
                         date: <str>,
                         icon: <str>,
                         duration: <number>,
-                        customTemplateOptions: <obj>,
+                        customOptions: <obj>,
                         showExpiration: <bool>,
                         closeByUser: <bool>,
                         closeOnClick: <bool>,

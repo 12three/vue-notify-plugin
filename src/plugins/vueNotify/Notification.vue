@@ -18,7 +18,7 @@
                 :date="params.date"
                 :message="params.msg"
                 :description="params.description"
-                :customTemplateOptions="params.customTemplateOptions"
+                :customOptions="params.customOptions"
                 />
         </div>
     </div>
@@ -36,7 +36,6 @@ TODO:
     # demo
     # remove linters errors
     # publish as npm package (vue-notify-plugin)
-    # min height
 
     # write tests
 */
@@ -65,7 +64,7 @@ export default {
             this.params.onClose();
             this.removeNotif();
         },
-        onMouseOver(e) {
+        onMouseOver() {
             if (!this.isCursorAbove) {
                 this.isCursorAbove = true;
                 if (this.timer) this.timer.pause();

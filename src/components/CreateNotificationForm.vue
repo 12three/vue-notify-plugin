@@ -29,19 +29,12 @@ export default {
                 description:
                     'Гарри Робертс поделился приёмами и инструментами, помогающими ему изучить незнакомую кодовую базу с легаси ',
                 closeByUser: false,
-                customTemplateOptions: {
+                customOptions: {
                     a: 2,
                 },
                 closeOnClick: false,
                 showExpiration: true,
                 icon: '/user.png',
-                onClose() {
-                    console.log('close');
-                    ``;
-                },
-                onClick() {
-                    console.log('click');
-                },
             });
             this.notifText = '';
         },
