@@ -25,7 +25,7 @@ export default {
     },
     computed: {
         notifsToShow() {
-            return this.notifStack.slice(0, this.maxNotifsCount).reverse()
+            return this.notifStack.slice(0, this.options.maxNotifsCount).reverse()
         },
         wrapperClass() {
             switch (this.options.position) {

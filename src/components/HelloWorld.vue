@@ -20,12 +20,11 @@ export default {
   },
   methods: {
     submit() {
-      this.$notify.push({
-        msg: this.notifText,
+      this.$notify.push(this.notifText, {
         date: 'June 25',
         duration: 3000,
         description: 'Гарри Робертс поделился приёмами и инструментами, помогающими ему изучить незнакомую кодовую базу с легаси ',
-        closedByUser: false,
+        closeByUser: false,
         closeOnClick: true,
         showExpiration: true,
         icon: '/user.png',

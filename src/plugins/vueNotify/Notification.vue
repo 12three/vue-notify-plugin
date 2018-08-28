@@ -44,14 +44,11 @@ import Timer from './Timer.js';
 
 /*
 TODO:
-    # api should have short methods
-    # right image
-    # position
     ? what can I do else
 
-    # demo
     # description
-    # publish on npm
+    # demo
+    # publish as npm package (vue-notify-plugin)
 
     # write tests
 */
@@ -66,7 +63,7 @@ export default {
     },
     computed: {
         showExpiration() {
-            return this.params.showExpiration && ! this.params.closedByUser
+            return this.params.showExpiration && ! this.params.closeByUser
         }
     },
     methods: {
@@ -100,7 +97,7 @@ export default {
         },
     },
     mounted() {
-        if (!this.params.closedByUser) {
+        if (!this.params.closeByUser) {
             this.timer = new Timer(() => {
                 this.removeNotif();
             }, this.params.duration)
@@ -133,7 +130,7 @@ export default {
         font-family: Helvetica,Arial,sans-serif
         color: #464b4f
         width: 100%
-        min-height: 50px
+        min-height: 30px
         margin-bottom: 5px
         border-radius: 5px
         border: 1px solid #f2f2f2

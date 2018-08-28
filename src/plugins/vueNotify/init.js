@@ -2,12 +2,11 @@ import Vue from 'vue';
 import NotificationListTemplate from './NotificationList.vue';
 
 const NotificationList = Vue.extend(NotificationListTemplate);
-const maxNotifsCount = 3;
 const types = {};
 const defaultNotifParams = {
     duration: 5000,
     showExpiration: true,
-    closedByUser: false,
+    closeByUser: false,
     closeOnClick: false,
     onClose: new Function(),
     onClick: new Function(),
@@ -20,7 +19,6 @@ function createContainer(options) {
         listInstance = new NotificationList({
             el: document.createElement('div'),
             data: {
-                maxNotifsCount,
                 options
             },
         });
@@ -51,13 +49,17 @@ const VueNotify = {
             Main options:
             {
                 position: 'top-right' || 'top-left' || 'bottom-right' || 'bottom-left',
+                maxNotifsCount: 3,
             }
         */
 
         const notifQueue = [];
         const delayBetweenPushing = 1000;
         const options = {
-            ...{ position: 'top-right' },
+            ...{
+                position: 'top-right',
+                maxNotifsCount: 3,
+             },
             ...instanceOptions
         };
         let shouldWaitToPush = false;
@@ -65,24 +67,28 @@ const VueNotify = {
         createContainer(options);
 
         Vue.prototype.$notify = {
-            push(options) {
+            push(msg, options) {
+                if (!msg) return
+
                 /*
                     Method expects the following options:
                     {
-                        msg: <str>,
                         description: <str>,
                         date: <str>,
                         icon: <str>,
                         duration: <number>,
                         showExpiration: <bool>,
-                        closedByUser: <bool>,
+                        closeByUser: <bool>,
                         closeOnClick: <bool>,
                         onClick: <func>,
                         onClose: <func>,
                     }
                 */
 
-                notifQueue.push(options);
+                notifQueue.push({
+                    ...{ msg },
+                    ...options
+                });
                 if (!shouldWaitToPush) {
                     shouldWaitToPush = true;
 
