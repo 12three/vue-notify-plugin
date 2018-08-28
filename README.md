@@ -34,6 +34,7 @@ Each notification expects message as first required argument.
 
 ### Notification options:
 All props are optional.
+
 |Name	|Type	|Default	|Desciption|
 | ------ | ------ | ------ | ------ |
 |duration|Number|5000|The amount of milliseconds that the animation should take|
