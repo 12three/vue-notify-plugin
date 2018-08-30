@@ -1,7 +1,7 @@
 {
   "name": "vue-notify-plugin",
   "description": "Non-blocking notifications for Vue.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "main": "./dist/vueNotifyPlugin.common.js",
   "files": [
