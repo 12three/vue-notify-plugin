@@ -22,7 +22,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vueNotifyPlugin ./src/init.js",
+    "build": "vue-cli-service build --target lib --name vueNotifyPlugin ./src/plugin/init.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
