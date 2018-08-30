@@ -34,6 +34,7 @@ TODO:
     ? what can I do else
 
     # demo
+    # own custom style
     # remove linters errors
     # publish as npm package (vue-notify-plugin)
 
