@@ -1,11 +1,32 @@
 {
-  "name": "my-notifs",
+  "name": "vue-notify-plugin",
+  "description": "Non-blocking notifications for Vue.js",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "./dist/vueNotifyPlugin.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "*.js"
+  ],
+  "keywords": [
+    "web",
+    "front-end",
+    "vue",
+    "vuejs",
+    "notification",
+    "vue-notification",
+    "vue-notifications"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/12three/vue-notify.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-plugin": "vue-cli-service build --target lib --name vueNotifyPlugin ./src/init.js"
   },
   "dependencies": {
     "vue": "^2.5.17"

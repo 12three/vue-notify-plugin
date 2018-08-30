@@ -45,6 +45,7 @@ function addNewNotif(options) {
 const VueNotify = {
     types: types,
     install(Vue, instanceOptions = {}) {
+
         /*
             Main options:
             {
