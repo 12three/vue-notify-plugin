@@ -1,5 +1,5 @@
-# Vue-notify 💬
-Vue-notify is vue plugin for non-blocking notifications.
+# Vue-notify-plugin 💬
+Vue plugin for non-blocking notifications.
 
 ## Installation
 ```
