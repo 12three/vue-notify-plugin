@@ -5,7 +5,8 @@
   "private": false,
   "main": "./dist/vueNotifyPlugin.common.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/*"
   ],
   "keywords": [
     "web",
@@ -58,7 +59,6 @@
     }
   },
   "browserslist": [
-    "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ]
