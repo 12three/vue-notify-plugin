@@ -22,7 +22,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vueNotifyPlugin ./src/plugin/init.js",
+    "build": "NODE_ENV=production vue-cli-service build --target lib --name vueNotifyPlugin ./src/plugin/NotificationList.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -58,7 +58,6 @@
     }
   },
   "browserslist": [
-    "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ]

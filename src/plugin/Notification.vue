@@ -88,7 +88,6 @@ export default {
             this.timer = new Timer(() => {
                 this.removeNotif();
             }, this.params.duration)
-            this.timer.start();
         }
     },
     props: {

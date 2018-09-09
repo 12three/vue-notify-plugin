@@ -1,27 +1,20 @@
-export default class Timer {
-    constructor(callback, delay) {
-        this.timerId = null;
-        this.startDate = null;
-        this.callback = callback;
-        this.remaining = delay;
+export default function Timer(callback, delay) {
+    var timerId, startDate, remaining = delay;
+
+    function _run() {
+        startDate = new Date();
+        window.clearTimeout(timerId);
+        timerId = window.setTimeout(callback, remaining);
     }
 
-    _run() {
-        this.startDate = new Date();
-        window.clearTimeout(this.timerId);
-        this.timerId = window.setTimeout(this.callback, this.remaining);
+    this.pause = () => {
+        window.clearTimeout(timerId);
+        remaining -= new Date() - startDate;
     }
 
-    pause() {
-        window.clearTimeout(this.timerId);
-        this.remaining -= new Date() - this.startDate;
+    this.resume = () => {
+        _run();
     }
 
-    resume() {
-        this._run();
-    }
-
-    start() {
-        this._run();
-    }
+    _run();
 }

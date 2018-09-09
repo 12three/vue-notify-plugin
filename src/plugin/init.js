@@ -30,11 +30,11 @@ function createContainer(options) {
 function addNewNotif(options) {
     return new Promise((fulfilled, rejected) => {
         if (listInstance) {
-            listInstance.notifStack.push({
-                ...defaultNotifParams,
-                ...options,
-                ...{ id: idCounter++ },
-            });
+            listInstance.notifStack.push(Object.assign(
+                defaultNotifParams,
+                options,
+                { id: idCounter++ },
+            ));
             fulfilled();
         } else {
             rejected();
@@ -57,13 +57,13 @@ const VueNotify = {
 
         const notifQueue = [];
         const delayBetweenPushing = 1000;
-        const options = {
-            ...{
+        const options = Object.assign(
+            {
                 position: 'top-right',
                 maxNotifsCount: 3,
-             },
-            ...instanceOptions
-        };
+            },
+            instanceOptions
+        );
         let shouldWaitToPush = false;
 
         createContainer(options);
@@ -88,10 +88,10 @@ const VueNotify = {
                     }
                 */
 
-                notifQueue.push({
-                    ...{ msg },
-                    ...options
-                });
+                notifQueue.push(Object.assign(
+                    { msg },
+                    options
+                ));
                 if (!shouldWaitToPush) {
                     shouldWaitToPush = true;
 
