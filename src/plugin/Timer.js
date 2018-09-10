@@ -7,12 +7,12 @@ export default function Timer(callback, delay) {
         timerId = window.setTimeout(callback, remaining);
     }
 
-    this.pause = () => {
+    this.pause = function() {
         window.clearTimeout(timerId);
         remaining -= new Date() - startDate;
     }
 
-    this.resume = () => {
+    this.resume = function() {
         _run();
     }
 

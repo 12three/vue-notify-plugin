@@ -31,6 +31,7 @@ function addNewNotif(options) {
     return new Promise((fulfilled, rejected) => {
         if (listInstance) {
             listInstance.notifStack.push(Object.assign(
+                {},
                 defaultNotifParams,
                 options,
                 { id: idCounter++ },
@@ -58,6 +59,7 @@ const VueNotify = {
         const notifQueue = [];
         const delayBetweenPushing = 1000;
         const options = Object.assign(
+            {},
             {
                 position: 'top-right',
                 maxNotifsCount: 3,
@@ -89,6 +91,7 @@ const VueNotify = {
                 */
 
                 notifQueue.push(Object.assign(
+                    {},
                     { msg },
                     options
                 ));
